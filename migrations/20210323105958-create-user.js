@@ -14,6 +14,22 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
+      
+      birthDate: {
+        type: Sequelize.STRING
+      },
+      profession: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      diseases: {
+        type: Sequelize.STRING
+      },
+      allergies: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

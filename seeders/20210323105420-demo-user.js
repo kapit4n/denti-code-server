@@ -5,6 +5,11 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [{
       firstName: 'John',
       lastName: 'Doe',
+      birthDate: '12/12/12',
+      profession: 'Engineer',
+      address: 'Bolivia',
+      diseases: '',
+      allergies: 'None',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
