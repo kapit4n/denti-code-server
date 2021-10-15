@@ -8,7 +8,7 @@ exports.list = async function (req, res) {
 }
 
 exports.getById = async function (req, res) {
-  const clientFile = await ClientFile.findOne({ where: { userId: req.params.id }, include: [Record] })
+  const clientFile = await ClientFile.findOne({ where: { patientId: req.params.id }, include: [Record] })
   res.json(clientFile)
 }
 

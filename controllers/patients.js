@@ -4,7 +4,7 @@ const models = require('../models');
 const { Patient, ClientFile } = models;
 
 exports.list = async function (req, res) {
-  const patients = await Patient.findAll({ include: ClientFile })
+  const patients = await Patient.findAll({})
   res.json(patients)
 }
 
