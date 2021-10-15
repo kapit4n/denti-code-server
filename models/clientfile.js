@@ -13,14 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Record, {
         foreignKey: 'fileId'
       })
-      this.belongsTo(models.User, {
-        foreignKey: 'userId',
+
+      this.belongsTo(models.Patient, {
+        foreignKey: 'patientId',
         onDelete: 'CASCADE'
       });
     }
   };
   ClientFile.init({
-    userId: DataTypes.INTEGER
+    patientId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'ClientFile',

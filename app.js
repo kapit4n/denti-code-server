@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var patientsRouter = require('./routes/patients');
 var doctorsRouter = require('./routes/doctors');
 var recordsRouter = require('./routes/records');
 var clientFilesRouter = require('./routes/client-files');
@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/patients', patientsRouter);
 app.use('/doctors', doctorsRouter);
 app.use('/records', recordsRouter);
 app.use('/files', clientFilesRouter);
