@@ -1,14 +1,14 @@
 const models = require('../models');
 
-const { Record, Doctor, ClientFile } = models;
+const { Record, Doctor, ClientFile, Patient } = models;
 
 exports.list = async function (req, res) {
-  const records = await Record.findAll({ include: [Doctor, ClientFile]})
+  const records = await Record.findAll({ include: { all: true, nested: true } })
   res.json(records)
 }
 
 exports.getById = async function (req, res) {
-  const record = await Record.findOne({ where: { id: req.params.id }, include: [Doctor, ClientFile] })
+  const record = await Record.findOne({ where: { id: req.params.id }, include: { all: true, nested: true } })
   res.json(record)
 }
 
