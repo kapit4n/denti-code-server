@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
-  Record.init({
+  RecordDetail.init({
     recordId: DataTypes.INTEGER,
     description: DataTypes.STRING
   }, {

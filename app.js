@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var patientsRouter = require('./routes/patients');
 var doctorsRouter = require('./routes/doctors');
 var recordsRouter = require('./routes/records');
+var recordDetailsRouter = require('./routes/recordDetails');
 var clientFilesRouter = require('./routes/client-files');
 
 var app = express();
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 app.use('/patients', patientsRouter);
 app.use('/doctors', doctorsRouter);
 app.use('/records', recordsRouter);
+app.use('/recordDetails', recordDetailsRouter);
 app.use('/files', clientFilesRouter);
 
 // catch 404 and forward to error handler
