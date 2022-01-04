@@ -18,8 +18,8 @@ exports.create = async function (req, res) {
 }
 
 exports.update = async function (req, res) {
-  const updated = await Doctor.update(req.body, { id: req.params.id })
-  res.json(updated)
+  await Doctor.update(req.body,  { where: { id: req.params.id } })
+  res.json(req.body)
 }
 
 exports.delete = async function (req, res) {
