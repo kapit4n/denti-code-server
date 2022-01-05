@@ -1,6 +1,6 @@
 const models = require('../models');
 
-const { Record, Doctor, ClientFile, Patient } = models;
+const { Record } = models;
 
 exports.list = async function (req, res) {
   const records = await Record.findAll({ include: { all: true, nested: true } })
