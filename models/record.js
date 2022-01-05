@@ -20,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'doctorId',
         onDelete: 'CASCADE'
       });
+      
+      this.belongsTo(models.RecordType, {
+        foreignKey: 'recordTypeId',
+        onDelete: 'CASCADE'
+      });
+
       this.belongsTo(models.ClientFile, {
         foreignKey: 'fileId',
         onDelete: 'CASCADE'
@@ -29,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
   Record.init({
     fileId: DataTypes.INTEGER,
     doctorId: DataTypes.INTEGER,
+    recordTypeId: DataTypes.INTEGER,
     description: DataTypes.STRING
   }, {
     sequelize,

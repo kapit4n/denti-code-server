@@ -14,6 +14,9 @@ module.exports = {
       doctorId: {
         type: Sequelize.INTEGER
       },
+      recordTypeId: {
+        type: Sequelize.INTEGER
+      },
       description: {
         type: Sequelize.STRING
       },

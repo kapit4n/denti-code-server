@@ -30,42 +30,6 @@
     "http"
   ],
   "paths": {
-    "/patients": {
-      "get": {
-        "tags": [
-          "patients"
-        ],
-        "summary": "Get patients list",
-        "description": "",
-        "operationId": "patients",
-        "consumes": [
-          ""
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Patients"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
     "/doctors": {
       "get": {
         "tags": [
@@ -277,6 +241,222 @@
             "doctorstore_auth": [
               "write:doctors",
               "read:doctors"
+            ]
+          }
+        ]
+      }
+    },
+    "/patients": {
+      "get": {
+        "tags": [
+          "patients"
+        ],
+        "summary": "Get all patients",
+        "description": "",
+        "operationId": "getPatients",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Patient"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "patientstore_auth": [
+              "write:patients",
+              "read:patients"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "patients"
+        ],
+        "summary": "Add a new patient to the db",
+        "description": "",
+        "operationId": "addPatient",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Patient object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Patient"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "patientstore_auth": [
+              "write:patients",
+              "read:patients"
+            ]
+          }
+        ]
+      }
+    },
+    "/patients/{Id}": {
+      "get": {
+        "tags": [
+          "patients"
+        ],
+        "summary": "Find patient by ID",
+        "description": "Returns a single patient",
+        "operationId": "getPatientById",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "description": "ID of patient to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Patient"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Patient not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "patients"
+        ],
+        "summary": "Updates a patient in the store with form data",
+        "description": "",
+        "operationId": "updatePatientWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "description": "ID of patient that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Updated name of the patient",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Updated status of the patient",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "patientstore_auth": [
+              "write:patients",
+              "read:patients"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "patients"
+        ],
+        "summary": "Deletes a patient",
+        "description": "",
+        "operationId": "deletePatient",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "patientId",
+            "in": "path",
+            "description": "Patient id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Patient not found"
+          }
+        },
+        "security": [
+          {
+            "patientstore_auth": [
+              "write:patients",
+              "read:patients"
             ]
           }
         ]
@@ -503,6 +683,228 @@
           }
         ]
       }
+    },
+    "/records": {
+      "get": {
+        "tags": [
+          "records"
+        ],
+        "summary": "Add a new record to the store",
+        "description": "",
+        "operationId": "getRecords",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Record"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "recordstore_auth": [
+              "write:records",
+              "read:records"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "records"
+        ],
+        "summary": "Add a new record to the store",
+        "description": "",
+        "operationId": "addRecord",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Record object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Record"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Record"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "recordstore_auth": [
+              "write:records",
+              "read:records"
+            ]
+          }
+        ]
+      }
+    },
+    "/records/{Id}": {
+      "get": {
+        "tags": [
+          "records"
+        ],
+        "summary": "Find record by ID",
+        "description": "Returns a single record",
+        "operationId": "getRecordById",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "description": "ID of record to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Record"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "records"
+        ],
+        "summary": "Updates a record in the store with form data",
+        "description": "",
+        "operationId": "updateRecordWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "description": "ID of record that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Updated name of the record",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Updated status of the record",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "recordstore_auth": [
+              "write:records",
+              "read:records"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "records"
+        ],
+        "summary": "Deletes a record",
+        "description": "",
+        "operationId": "deleteRecord",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recordId",
+            "in": "path",
+            "description": "Record id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        },
+        "security": [
+          {
+            "recordstore_auth": [
+              "write:records",
+              "read:records"
+            ]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
@@ -522,19 +924,38 @@
     }
   },
   "definitions": {
-    "Patients": {
+    "Patient": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
         "firstName": {
-          "type": "string"
+          "type": "string",
+          "example": "Juan"
         },
         "lastName": {
-          "type": "string"
-        },
-        "birthDate": {
-          "type": "string"
+          "type": "string",
+          "example": "Claros"
         },
         "profession": {
+          "type": "string",
+          "example": "Dentist"
+        },
+        "birthDate": {
+          "type": "string",
+          "example": "12/12/12"
+        },
+        "address": {
+          "type": "string",
+          "example": "Chile 1212"
+        },
+        "diseases": {
+          "type": "string",
+          "example": "None"
+        },
+        "allergies": {
           "type": "string"
         }
       }
@@ -557,6 +978,10 @@
         "lastName": {
           "type": "string",
           "example": "Arce"
+        },
+        "email": {
+          "type": "string",
+          "example": "luis.arce22@gmail.com"
         },
         "speciality": {
           "type": "string",
