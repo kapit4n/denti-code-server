@@ -308,6 +308,90 @@
       "xml": {
         "name": "Doctor"
       }
+    },
+    "RecordType": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string",
+          "example": "Record type"
+        },
+        "price": {
+          "type": "integer",
+          "example": "100"
+        }
+      },
+      "xml": {
+        "name": "RecordType"
+      }
+    },
+    "Record": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "recordTypeId": {
+          "type": "integer",
+          "example": "1"
+        },
+        "patientId": {
+          "type": "integer",
+          "example": "1"
+        },
+        "doctorId": {
+          "type": "integer",
+          "example": "1"
+        },
+        "description": {
+          "type": "string",
+          "example": "Record 1"
+        },
+        "price": {
+          "type": "Integer",
+          "example": "100"
+        }
+      },
+      "xml": {
+        "name": "Record"
+      }
+    },
+    "RecordDetail": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "recordId": {
+          "type": "integer",
+          "example": "1"
+        },
+        "description": {
+          "type": "string",
+          "example": "Record 1 Action 1"
+        }
+      },
+      "xml": {
+        "name": "Doctor"
+      }
     }
   },
   "externalDocs": {
