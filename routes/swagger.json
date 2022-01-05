@@ -44,14 +44,15 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Patients"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Patients"
+              }
             }
           }
         },
@@ -68,9 +69,44 @@
     "/doctors": {
       "get": {
         "tags": [
-          "doctor"
+          "doctors"
         ],
-        "summary": "Add a new doctor to the store",
+        "summary": "Get all doctors",
+        "description": "",
+        "operationId": "getDoctors",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Doctor"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "doctorstore_auth": [
+              "write:doctors",
+              "read:doctors"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "doctors"
+        ],
+        "summary": "Add a new doctor to the db",
         "description": "",
         "operationId": "addDoctor",
         "consumes": [
@@ -85,7 +121,7 @@
           {
             "in": "body",
             "name": "body",
-            "description": "Doctor object that needs to be added to the store",
+            "description": "Doctor object that needs to be added to the db",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Doctor"
@@ -110,7 +146,7 @@
     "/doctors/{Id}": {
       "get": {
         "tags": [
-          "doctor"
+          "doctors"
         ],
         "summary": "Find doctor by ID",
         "description": "Returns a single doctor",
@@ -149,9 +185,9 @@
           }
         ]
       },
-      "post": {
+      "put": {
         "tags": [
-          "doctor"
+          "doctors"
         ],
         "summary": "Updates a doctor in the store with form data",
         "description": "",
@@ -203,7 +239,7 @@
       },
       "delete": {
         "tags": [
-          "doctor"
+          "doctors"
         ],
         "summary": "Deletes a doctor",
         "description": "",
@@ -249,7 +285,7 @@
     "/recordTypes": {
       "get": {
         "tags": [
-          "recordType"
+          "recordTypes"
         ],
         "summary": "Add a new recordType to the store",
         "description": "",
@@ -266,7 +302,10 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/RecordType"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecordType"
+              }
             }
           }
         },
@@ -281,7 +320,7 @@
       },
       "post": {
         "tags": [
-          "recordType"
+          "recordTypes"
         ],
         "summary": "Add a new recordType to the store",
         "description": "",
@@ -296,6 +335,8 @@
         ],
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
             "description": "RecordType object that needs to be added to the db",
             "required": true,
             "schema": {
@@ -304,6 +345,12 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RecordType"
+            }
+          },
           "405": {
             "description": "Invalid input"
           }
@@ -317,12 +364,11 @@
           }
         ]
       }
-
     },
     "/recordTypes/{Id}": {
       "get": {
         "tags": [
-          "recordType"
+          "recordTypes"
         ],
         "summary": "Find recordType by ID",
         "description": "Returns a single recordType",
@@ -363,7 +409,7 @@
       },
       "put": {
         "tags": [
-          "recordType"
+          "recordTypes"
         ],
         "summary": "Updates a recordType in the store with form data",
         "description": "",
@@ -415,7 +461,7 @@
       },
       "delete": {
         "tags": [
-          "recordType"
+          "recordTypes"
         ],
         "summary": "Deletes a recordType",
         "description": "",
