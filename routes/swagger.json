@@ -245,6 +245,187 @@
           }
         ]
       }
+    },
+    "/recordTypes": {
+      "get": {
+        "tags": [
+          "recordType"
+        ],
+        "summary": "Add a new recordType to the store",
+        "description": "",
+        "operationId": "addRecordType",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "RecordType object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecordType"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "recordTypestore_auth": [
+              "write:recordTypes",
+              "read:recordTypes"
+            ]
+          }
+        ]
+      }
+    },
+    "/recordTypes/{Id}": {
+      "get": {
+        "tags": [
+          "recordType"
+        ],
+        "summary": "Find recordType by ID",
+        "description": "Returns a single recordType",
+        "operationId": "getRecordTypeById",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "recordTypeId",
+            "in": "path",
+            "description": "ID of recordType to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RecordType"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "RecordType not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "recordType"
+        ],
+        "summary": "Updates a recordType in the store with form data",
+        "description": "",
+        "operationId": "updateRecordTypeWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "recordTypeId",
+            "in": "path",
+            "description": "ID of recordType that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Updated name of the recordType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Updated status of the recordType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "recordTypestore_auth": [
+              "write:recordTypes",
+              "read:recordTypes"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "recordType"
+        ],
+        "summary": "Deletes a recordType",
+        "description": "",
+        "operationId": "deleteRecordType",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recordTypeId",
+            "in": "path",
+            "description": "RecordType id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "RecordType not found"
+          }
+        },
+        "security": [
+          {
+            "recordTypestore_auth": [
+              "write:recordTypes",
+              "read:recordTypes"
+            ]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
