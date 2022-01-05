@@ -905,6 +905,228 @@
           }
         ]
       }
+    },
+    "/recordDetails": {
+      "get": {
+        "tags": [
+          "recordDetails"
+        ],
+        "summary": "Add a new recordDetail to the store",
+        "description": "",
+        "operationId": "getRecordDetails",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecordDetail"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "recordDetailstore_auth": [
+              "write:recordDetails",
+              "read:recordDetails"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "recordDetails"
+        ],
+        "summary": "Add a new recordDetail to the store",
+        "description": "",
+        "operationId": "addRecordDetail",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "RecordDetail object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecordDetail"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RecordDetail"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "recordDetailstore_auth": [
+              "write:recordDetails",
+              "read:recordDetails"
+            ]
+          }
+        ]
+      }
+    },
+    "/recordDetails/{Id}": {
+      "get": {
+        "tags": [
+          "recordDetails"
+        ],
+        "summary": "Find recordDetail by ID",
+        "description": "Returns a single recordDetail",
+        "operationId": "getRecordDetailById",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "recordDetailId",
+            "in": "path",
+            "description": "ID of recordDetail to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RecordDetail"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "RecordDetail not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "recordDetails"
+        ],
+        "summary": "Updates a recordDetail in the store with form data",
+        "description": "",
+        "operationId": "updateRecordDetailWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "recordDetailId",
+            "in": "path",
+            "description": "ID of recordDetail that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Updated name of the recordDetail",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Updated status of the recordDetail",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "recordDetailstore_auth": [
+              "write:recordDetails",
+              "read:recordDetails"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "recordDetails"
+        ],
+        "summary": "Deletes a recordDetail",
+        "description": "",
+        "operationId": "deleteRecordDetail",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recordDetailId",
+            "in": "path",
+            "description": "RecordDetail id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "RecordDetail not found"
+          }
+        },
+        "security": [
+          {
+            "recordDetailstore_auth": [
+              "write:recordDetails",
+              "read:recordDetails"
+            ]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
