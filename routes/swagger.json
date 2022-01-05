@@ -253,6 +253,38 @@
         ],
         "summary": "Add a new recordType to the store",
         "description": "",
+        "operationId": "getRecordTypes",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RecordType"
+            }
+          }
+        },
+        "security": [
+          {
+            "recordTypestore_auth": [
+              "write:recordTypes",
+              "read:recordTypes"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "recordType"
+        ],
+        "summary": "Add a new recordType to the store",
+        "description": "",
         "operationId": "addRecordType",
         "consumes": [
           "application/json",
@@ -264,9 +296,7 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "RecordType object that needs to be added to the store",
+            "description": "RecordType object that needs to be added to the db",
             "required": true,
             "schema": {
               "$ref": "#/definitions/RecordType"
@@ -287,6 +317,7 @@
           }
         ]
       }
+
     },
     "/recordTypes/{Id}": {
       "get": {
@@ -330,7 +361,7 @@
           }
         ]
       },
-      "post": {
+      "put": {
         "tags": [
           "recordType"
         ],
