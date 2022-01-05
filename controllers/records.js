@@ -18,7 +18,7 @@ exports.create = async function (req, res) {
 }
 
 exports.update = async function (req, res) {
-  const updated = await Record.update(req.body, { id: req.params.id })
+  const updated = await Record.update(req.body, { where: { id: req.params.id } })
   res.json(updated)
 }
 
