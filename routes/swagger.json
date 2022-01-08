@@ -26,8 +26,8 @@
     }
   ],
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/doctors": {
@@ -214,13 +214,7 @@
         ],
         "parameters": [
           {
-            "name": "api_key",
-            "in": "header",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "doctorId",
+            "name": "Id",
             "in": "path",
             "description": "Doctor id to delete",
             "required": true,
@@ -237,12 +231,7 @@
           }
         },
         "security": [
-          {
-            "doctorstore_auth": [
-              "write:doctors",
-              "read:doctors"
-            ]
-          }
+         
         ]
       }
     },
@@ -274,12 +263,7 @@
           }
         },
         "security": [
-          {
-            "patientstore_auth": [
-              "write:patients",
-              "read:patients"
-            ]
-          }
+          
         ]
       },
       "post": {
@@ -874,13 +858,7 @@
         ],
         "parameters": [
           {
-            "name": "api_key",
-            "in": "header",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recordId",
+            "name": "Id",
             "in": "path",
             "description": "Record id to delete",
             "required": true,
@@ -897,12 +875,7 @@
           }
         },
         "security": [
-          {
-            "recordstore_auth": [
-              "write:records",
-              "read:records"
-            ]
-          }
+         
         ]
       }
     },
