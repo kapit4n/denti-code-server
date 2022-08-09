@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.ClientFile, {
         foreignKey: 'patientId'
       })
+
+      this.hasMany(models.ClientFile, {
+        foreignKey: 'patientId'
+      })
     }
   };
   Patient.init({
