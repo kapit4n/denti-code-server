@@ -10,3 +10,9 @@ https://github.com/kapit4n/denti-code
 - npx sequelize-cli db:migrate:undo
 - npx sequelize-cli db:migrate
 - npx sequelize-cli db:seed:all
+
+# Install
+- npm install
+
+# RUN
+- npm run start
