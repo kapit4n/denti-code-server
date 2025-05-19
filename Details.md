@@ -7,6 +7,35 @@
 - User that will make actions
 ## Record type
 - General actions that is made for a doctor
+Diagnostic Actions:
+- Dental Examinations
+- X-rays (Radiographs)
+- Bite Evaluation
+- Oral Cancer Screening
+Preventative Actions:
+- Teeth Cleaning (Prophylaxis)
+- Fluoride Treatments
+- Dental Sealants
+- Patient Education
+- Mouthguards
+Restorative Actions: 
+- Fillings
+- Crowns (Caps)
+- Bridges
+- Root Canal Treatment (Endodontics)
+- Extractions
+- Dental Implants
+- Dentures
+- Gum Disease Treatment (Periodontics)
+- Inlays and Onlays
+Cosmetic Actions:
+- Teeth Whitening
+- Veneers
+- Dental Bonding
+- Orthodontic Treatments (Braces and Aligners)
+- Gum Lifts/Reshaping (Gingivectomy)
+
+
 
 ## Record
 - A particular instance of record type
