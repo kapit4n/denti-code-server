@@ -35,8 +35,6 @@ Cosmetic Actions:
 - Orthodontic Treatments (Braces and Aligners)
 - Gum Lifts/Reshaping (Gingivectomy)
 
-
-
 ## Record
 - A particular instance of record type
 - it belongs to a record type
